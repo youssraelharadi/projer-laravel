@@ -16,9 +16,13 @@ class CorsMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        return $next($request)
-            ->header('Access-Control-Allow-Origin', '*') // Vous pouvez restreindre cela à votre domaine spécifique
-            ->header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS')
-            ->header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+        $response = $next($request);
+        
+        // Ajoutez les en-têtes CORS nécessaires
+        $response->headers->set('Access-Control-Allow-Origin', '*'); // Changez '*' par votre domaine pour plus de sécurité
+        $response->headers->set('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+        $response->headers->set('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+
+        return $response;
     }
 }

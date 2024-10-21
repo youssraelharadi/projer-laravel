@@ -20,6 +20,7 @@ class Kernel extends HttpKernel
         \App\Http\Middleware\PreventRequestsDuringMaintenance::class,
         \App\Http\Middleware\CorsMiddleware::class,
 
+
     ];
 
     /**
